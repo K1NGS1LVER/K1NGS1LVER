@@ -1,39 +1,79 @@
-# Daniel Paul
-
-**Full-Stack & AI/ML Engineer** | MCA @ Christ University  
-Former **Technical Consultant Intern @ Adobe Consulting Services**  
-*Building production agentic workflows, on-device RAG systems, and high-throughput backend architecture.*
-
-[LinkedIn](https://linkedin.com/in/daniel-paul-dev) • [Email](mailto:danielpaul150604@gmail.com) • Bengaluru, India
-
----
-
-### 🚀 Systems & Value Delivered
-
-#### 🔹 Enterprise AI Workflows — Adobe ACS (FinPath)
-* **Problem**: Enterprise financial planning workflows suffered from slow sequential tool execution and high latency.
-* **How It Helps**: Re-engineered agent execution with **LangGraph** async graph nodes and **Pydantic** schema validation, cutting planning latency by **60%** with 100% type-safe tool execution.
-* **Tech**: FastAPI, LangGraph, Supabase, PostgreSQL RLS, React 19
-
-#### 🔹 Local-First Agentic RAG — [docSeek](https://github.com/K1NGS1LVER/docSeek-offline-agentic-RAG)
-* **Problem**: Data privacy concerns & cloud API costs block enterprise adoption of document RAG systems.
-* **How It Helps**: Delivers a **100% offline**, zero-API-key Corrective RAG pipeline running over local Ollama (`qwen2.5`) with sub-15ms retrieval across **10,000+ indexed pages**.
-* **Tech**: LangGraph, FAISS (768-dim), SQLite FTS5, Ollama, Kokoro TTS
-
-#### 🔹 Narrative Intelligence Platform — [ClearNews](https://github.com/K1NGS1LVER/ClearNews)
-* **Problem**: Ungrounded LLM summaries obscure news bias and narrative drift over time.
-* **How It Helps**: Fuses fine-tuned **BERT** bias classification with **HDBSCAN/UMAP** clustering over 1,000+ daily articles, serving source-grounded answers with real-time SSE streaming.
-* **Tech**: BERT, XGBoost, SHAP, pgvector, LangGraph, FastAPI, Redis
-
-#### 🔹 Open Source CLI — [`teacher-sab`](https://github.com/K1NGS1LVER) (npm)
-* **Problem**: Cross-agent skill installation friction and frontmatter parsing bugs across AI harness ecosystems.
-* **How It Helps**: Published a zero-dependency interactive CLI (`npx teacher-sab install`) supporting 10 AI harnesses with byte-identical skill distribution.
-* **Tech**: Node.js, npm registry, YAML parser, E2E CLI testing
-
----
-
-### 🛠️ Core Engineering Stack
-
-* **AI / ML**: LangGraph, RAG/CRAG, BERT, XGBoost, SHAP, FAISS, pgvector, Ollama, PyTorch
-* **Backend**: Python, FastAPI, Node.js, PostgreSQL, Supabase, Redis, Docker
-* **Frontend**: TypeScript, React 19, Tailwind CSS, Vite
+<table width="100%">
+  <tr>
+    <td width="35%" valign="top">
+      <h3>👨‍💻 Daniel Paul</h3>
+      <p>
+        <b>Full-Stack & AI/ML Engineer</b><br>
+        <i>MCA @ Christ University</i><br>
+        Ex-<b>Adobe ACS Intern</b>
+      </p>
+      
+      <hr>
+      
+      <h4>📍 Details</h4>
+      <ul>
+        <li><b>Location:</b> Bengaluru, India</li>
+        <li><b>Focus:</b> AI/ML & Agentic Systems</li>
+        <li><b>Degree:</b> MCA (Expected 2027)</li>
+      </ul>
+      
+      <hr>
+      
+      <h4>🛠️ Core Stack</h4>
+      <p>
+        <code>LangGraph</code> <code>FastAPI</code><br>
+        <code>BERT</code> <code>XGBoost</code><br>
+        <code>pgvector</code> <code>FAISS</code><br>
+        <code>Ollama</code> <code>PyTorch</code><br>
+        <code>Python</code> <code>TypeScript</code><br>
+        <code>React 19</code> <code>Docker</code>
+      </p>
+      
+      <hr>
+      
+      <h4>📫 Connect</h4>
+      <p>
+        💼 <a href="https://linkedin.com/in/daniel-paul-dev">LinkedIn</a><br>
+        📧 <a href="mailto:danielpaul150604@gmail.com">Email</a><br>
+        🐙 <a href="https://github.com/K1NGS1LVER">GitHub Profile</a>
+      </p>
+    </td>
+    <td width="65%" valign="top">
+      <h3>🚀 Systems & Value Delivered</h3>
+      
+      <h4>🔹 Enterprise AI Workflows — Adobe ACS (FinPath)</h4>
+      <ul>
+        <li><b>Problem:</b> High execution latency in enterprise financial planning workflows.</li>
+        <li><b>Impact:</b> Reduced planning latency by <b>60%</b> via async <b>LangGraph</b> graph execution & Pydantic tool schemas.</li>
+        <li><b>Tech:</b> FastAPI, LangGraph, Supabase, PostgreSQL RLS, React 19</li>
+      </ul>
+      
+      <hr>
+      
+      <h4>🔹 Local-First Agentic RAG — <a href="https://github.com/K1NGS1LVER/docSeek-offline-agentic-RAG">docSeek</a></h4>
+      <ul>
+        <li><b>Problem:</b> Privacy concerns & API costs block enterprise adoption of cloud RAG systems.</li>
+        <li><b>Impact:</b> 100% offline Corrective RAG with <b>sub-15ms search</b> across 10,000+ indexed pages.</li>
+        <li><b>Tech:</b> LangGraph, FAISS (768-dim), SQLite FTS5, Ollama, Kokoro TTS</li>
+      </ul>
+      
+      <hr>
+      
+      <h4>🔹 Narrative Intelligence Platform — <a href="https://github.com/K1NGS1LVER/ClearNews">ClearNews</a></h4>
+      <ul>
+        <li><b>Problem:</b> Ungrounded LLM summaries obscure news narrative drift over time.</li>
+        <li><b>Impact:</b> Fused fine-tuned <b>BERT</b> bias classification with <b>HDBSCAN/UMAP</b> clustering over 1,000+ daily articles.</li>
+        <li><b>Tech:</b> BERT, XGBoost, SHAP, pgvector, LangGraph, FastAPI, Redis</li>
+      </ul>
+      
+      <hr>
+      
+      <h4>🔹 Open-Source CLI — <a href="https://github.com/K1NGS1LVER">teacher-sab</a> (npm)</h4>
+      <ul>
+        <li><b>Problem:</b> Cross-agent skill installation friction across AI harness ecosystems.</li>
+        <li><b>Impact:</b> Zero-dependency CLI package supporting 10 AI harnesses with byte-identical skill distribution.</li>
+        <li><b>Tech:</b> Node.js, npm registry, YAML parser, E2E testing</li>
+      </ul>
+    </td>
+  </tr>
+</table>

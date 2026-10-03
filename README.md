@@ -1,68 +1,39 @@
-# Hi there, I'm Daniel Paul 👋 
+# Daniel Paul
 
-**Full-Stack Developer & AI/ML Engineer** | MCA Student @ Christ University  
-Former **Technical Consultant Intern @ Adobe Consulting Services**
+**Full-Stack & AI/ML Engineer** | MCA @ Christ University  
+Former **Technical Consultant Intern @ Adobe Consulting Services**  
+*Building production agentic workflows, on-device RAG systems, and high-throughput backend architecture.*
 
----
-
-### 🚀 About Me
-
-- 💻 **Experience**: Former Technical Consultant Intern at **Adobe Consulting Services (ACS)** where I engineered **FinPath** (LangGraph agentic financial platform, cutting planning latency by 60%).
-- 🎓 **Education**: Pursuing **Master of Computer Applications (MCA)** at Christ (Deemed to be University), Bengaluru (`Expected May 2027`).
-- 🤖 **Core Focus**: Production RAG / CRAG systems, agentic AI workflows (**LangGraph**), vector search (**pgvector / FAISS**), model fine-tuning (**BERT / XGBoost**), and high-performance **FastAPI / React 19** applications.
-- 📦 **Open Source**: Author of [`teacher-sab`](https://github.com/K1NGS1LVER) — an AI-native teaching framework CLI published on **npm**.
+[LinkedIn](https://linkedin.com/in/daniel-paul-dev) • [Email](mailto:danielpaul150604@gmail.com) • Bengaluru, India
 
 ---
 
-### 🛠️ Tech Stack & Capabilities
+### 🚀 Systems & Value Delivered
 
-**Languages & Core**  
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-![Go](https://img.shields.io/badge/Go-00ADD8?style=for-the-badge&logo=go&logoColor=white)
-![SQL](https://img.shields.io/badge/SQL-4479A1?style=for-the-badge&logo=postgresql&logoColor=white)
+#### 🔹 Enterprise AI Workflows — Adobe ACS (FinPath)
+* **Problem**: Enterprise financial planning workflows suffered from slow sequential tool execution and high latency.
+* **How It Helps**: Re-engineered agent execution with **LangGraph** async graph nodes and **Pydantic** schema validation, cutting planning latency by **60%** with 100% type-safe tool execution.
+* **Tech**: FastAPI, LangGraph, Supabase, PostgreSQL RLS, React 19
 
-**AI / ML & GenAI Frameworks**  
-![LangGraph](https://img.shields.io/badge/LangGraph-FF6F61?style=for-the-badge)
-![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)
-![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)
-![FAISS](https://img.shields.io/badge/FAISS-00599C?style=for-the-badge)
-![Ollama](https://img.shields.io/badge/Ollama-000000?style=for-the-badge&logo=ollama&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+#### 🔹 Local-First Agentic RAG — [docSeek](https://github.com/K1NGS1LVER/docSeek-offline-agentic-RAG)
+* **Problem**: Data privacy concerns & cloud API costs block enterprise adoption of document RAG systems.
+* **How It Helps**: Delivers a **100% offline**, zero-API-key Corrective RAG pipeline running over local Ollama (`qwen2.5`) with sub-15ms retrieval across **10,000+ indexed pages**.
+* **Tech**: LangGraph, FAISS (768-dim), SQLite FTS5, Ollama, Kokoro TTS
 
-**Frontend & Databases**  
-![React 19](https://img.shields.io/badge/React_19-61DAFB?style=for-the-badge&logo=react&logoColor=black)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4479A1?style=for-the-badge&logo=postgresql&logoColor=white)
-![Redis](https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white)
-![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
+#### 🔹 Narrative Intelligence Platform — [ClearNews](https://github.com/K1NGS1LVER/ClearNews)
+* **Problem**: Ungrounded LLM summaries obscure news bias and narrative drift over time.
+* **How It Helps**: Fuses fine-tuned **BERT** bias classification with **HDBSCAN/UMAP** clustering over 1,000+ daily articles, serving source-grounded answers with real-time SSE streaming.
+* **Tech**: BERT, XGBoost, SHAP, pgvector, LangGraph, FastAPI, Redis
+
+#### 🔹 Open Source CLI — [`teacher-sab`](https://github.com/K1NGS1LVER) (npm)
+* **Problem**: Cross-agent skill installation friction and frontmatter parsing bugs across AI harness ecosystems.
+* **How It Helps**: Published a zero-dependency interactive CLI (`npx teacher-sab install`) supporting 10 AI harnesses with byte-identical skill distribution.
+* **Tech**: Node.js, npm registry, YAML parser, E2E CLI testing
 
 ---
 
-### 🔥 Featured Projects
+### 🛠️ Core Engineering Stack
 
-| Project | Description | Tech Stack |
-| :--- | :--- | :--- |
-| 📰 [**ClearNews**](https://github.com/K1NGS1LVER/ClearNews) | News Narrative Intelligence Platform with hybrid RRF retrieval & dynamic narrative drift maps. | `BERT`, `XGBoost`, `LangGraph`, `pgvector`, `FastAPI`, `React 19` |
-| 🔍 [**docSeek**](https://github.com/K1NGS1LVER/docSeek-offline-agentic-RAG) | On-Device Corrective RAG engine & Knowledge Graph visualizer running 100% offline. | `LangGraph`, `FAISS`, `SQLite FTS5`, `Ollama`, `Kokoro TTS` |
-| 🎓 [**teacher-sab**](https://github.com/K1NGS1LVER) | AI-native teaching framework CLI published to npm covering 10 AI harnesses. | `Node.js`, `npm`, `Interactive CLI` |
-| 📊 [**neostats_credit_fraud**](https://github.com/K1NGS1LVER/neostats_credit_fraud) | Credit risk ML platform with calibrated LightGBM & explainable EBM with adverse-action notices. | `LightGBM`, `EBM`, `SHAP`, `DuckDB`, `Groq`, `Docker` |
-| 🛠️ [**mcpium**](https://github.com/K1NGS1LVER/mcpium) | Audited 100 SaaS apps for Composio buildability via 3-way AST & LLM triangulation. | `Python`, `TypeScript AST`, `Gemini Flash`, `pytest` |
-
----
-
-### 📊 GitHub Activity & Stats
-
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=K1NGS1LVER&show_icons=true&theme=tokyonight&hide_border=true&count_private=true" alt="Daniel's GitHub Stats" width="48%" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=K1NGS1LVER&layout=compact&theme=tokyonight&hide_border=true" alt="Top Languages" width="48%" />
-</p>
-
----
-
-### 📫 Get in Touch
-
-- 💼 **LinkedIn**: [linkedin.com/in/daniel-paul-dev](https://linkedin.com/in/daniel-paul-dev)
-- 📧 **Email**: [danielpaul150604@gmail.com](mailto:danielpaul150604@gmail.com)
-- 📍 **Location**: Bengaluru, India
+* **AI / ML**: LangGraph, RAG/CRAG, BERT, XGBoost, SHAP, FAISS, pgvector, Ollama, PyTorch
+* **Backend**: Python, FastAPI, Node.js, PostgreSQL, Supabase, Redis, Docker
+* **Frontend**: TypeScript, React 19, Tailwind CSS, Vite

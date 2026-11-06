@@ -103,18 +103,19 @@ def stats_svg(data):
         ("public repos", fmt(data["repos"]), False),
     ]
     parts = [rule(32)]
+    col = 592 / 3
     for i, (label, value, primary) in enumerate(cols):
-        x = 44 + i * 196
+        cx = 44 + col * (i + 0.5)
         if i:
             parts.append(
-                f'<line x1="{x - 14}" y1="52" x2="{x - 14}" y2="118" stroke="{LINE}" stroke-width="1"/>'
+                f'<line x1="{44 + col * i:.1f}" y1="52" x2="{44 + col * i:.1f}" y2="118" stroke="{LINE}" stroke-width="1"/>'
             )
         parts.append(
-            f'<text x="{x}" y="92" font-family="{MONO}" font-size="32" font-weight="600" '
+            f'<text x="{cx:.1f}" y="92" text-anchor="middle" font-family="{MONO}" font-size="32" font-weight="600" '
             f'fill="{ACCENT if primary else TEXT}">{value}</text>'
         )
         parts.append(
-            f'<text x="{x}" y="114" font-family="{FONT}" font-size="11.5" fill="{MUTED}">{label}</text>'
+            f'<text x="{cx:.1f}" y="114" text-anchor="middle" font-family="{FONT}" font-size="11.5" fill="{MUTED}">{label}</text>'
         )
     return (
         f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 134" width="100%" height="auto">'

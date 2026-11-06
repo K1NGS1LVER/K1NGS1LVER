@@ -69,7 +69,7 @@ Node.js, npm registry, YAML parser, end-to-end tests.
 </p>
 
 | Area | Tools |
-|---|---|
+|:---:|:---:|
 | AI / ML | LangGraph, RAG/CRAG, BERT, XGBoost, SHAP, FAISS, pgvector, Ollama, PyTorch |
 | Backend | Python, FastAPI, Node.js, PostgreSQL, Supabase, Redis, Docker |
 | Frontend | TypeScript, React 19, Tailwind CSS, Vite |

@@ -21,6 +21,7 @@ TEXT = "#ecebe7"
 MUTED = "#8a8a91"
 LINE = "#232327"
 TRACK = "#1d1d21"
+SKIP_LANGS = {"HTML", "CSS", "SCSS"}
 ACCENT = "#9d7bff"
 
 
@@ -55,6 +56,10 @@ def collect():
         """
         query($login: String!) {
           user(login: $login) {
+            repositories(ownerAffiliations: OWNER, privacy: PUBLIC, isFork: false, first: 100) {
+              totalCount
+              nodes { languages(first: 20) { edges { node { name color } } } }
+            }
             contributionsCollection {
               totalCommitContributions
               contributionCalendar {
@@ -65,19 +70,31 @@ def collect():
         }
         """,
         {"login": LOGIN},
-    )["user"]["contributionsCollection"]
+    )["user"]
+    contrib = gql["contributionsCollection"]
+
+    languages, colors = Counter(), {}
+    for repo in gql["repositories"]["nodes"]:
+        names = set()
+        for edge in repo["languages"]["edges"]:
+            name = edge["node"]["name"]
+            colors.setdefault(name, edge["node"]["color"] or MUTED)
+            names.add(name)
+        for name in names - SKIP_LANGS:
+            languages[name] += 1
 
     return {
         "repos": len(repos),
+        "repo_total": gql["repositories"]["totalCount"],
         "stars": sum(r["stargazers_count"] for r in repos),
-        "commits": gql["totalCommitContributions"],
+        "commits": contrib["totalCommitContributions"],
         "weeks": [
             [d["contributionCount"] for d in w["contributionDays"]]
-            for w in gql["contributionCalendar"]["weeks"]
+            for w in contrib["contributionCalendar"]["weeks"]
         ],
-        "languages": Counter(r["language"] for r in repos if r["language"]),
+        "languages": languages,
+        "colors": colors,
     }
-
 
 def rule(y, x1=44, x2=636):
     return f'<line x1="{x1}" y1="{y}" x2="{x2}" y2="{y}" stroke="{LINE}" stroke-width="1"/>'
@@ -152,25 +169,35 @@ def heatmap_svg(data):
 
 
 def languages_svg(data):
-    top = data["languages"].most_common(6)
-    peak = max((count for _, count in top), default=1)
-    rows = []
-    for i, (lang, count) in enumerate(top):
-        y = 76 + i * 26
-        width = round(300 * count / peak)
-        fill = ACCENT if i == 0 else "#6b6b74"
-        rows.append(
-            f'<text x="44" y="{y + 8}" font-family="{FONT}" font-size="13" fill="{TEXT}">{esc(lang)}</text>'
-            f'<rect x="196" y="{y}" width="300" height="6" fill="{TRACK}"/>'
-            f'<rect x="196" y="{y}" width="{width}" height="6" fill="{fill}"/>'
-            f'<text x="636" y="{y + 7}" text-anchor="end" font-family="{MONO}" font-size="10.5" fill="{MUTED}">{count} repos</text>'
+    rows = data["languages"].most_common(6)
+    total = sum(count for _, count in rows) or 1
+    bar_w, x = 592, 44
+    segments = []
+    for name, count in rows:
+        width = count / total * bar_w
+        segments.append(
+            f'<rect x="{x:.1f}" y="70" width="{max(width - 1.5, 1):.1f}" height="10" '
+            f'fill="{data["colors"].get(name, MUTED)}"/>'
         )
-    height = 76 + (len(top) - 1) * 26 + 22
-    return f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 {height}" width="100%" height="auto">
-  <rect width="680" height="{height}" fill="{BG}"/>
+        x += width
+
+    col = bar_w / 3
+    legend = []
+    for i, (name, count) in enumerate(rows):
+        lx, ly = 44 + (i % 3) * col, 112 + (i // 3) * 30
+        legend.append(
+            f'<circle cx="{lx + 4}" cy="{ly - 4.5}" r="4" fill="{data["colors"].get(name, MUTED)}"/>'
+            f'<text x="{lx + 16}" y="{ly}" font-family="{FONT}" font-size="13" fill="{TEXT}">{esc(name)}</text>'
+            f'<text x="{lx + col - 24:.1f}" y="{ly}" text-anchor="end" font-family="{MONO}" font-size="10.5" fill="{MUTED}">{count} repos</text>'
+        )
+
+    return f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 166" width="100%" height="auto">
+  <rect width="680" height="166" fill="{BG}"/>
   {rule(28)}
-  <text x="44" y="54" font-family="{FONT}" font-size="14" font-weight="600" fill="{TEXT}">Languages, by repository count</text>
-  {"".join(rows)}
+  <text x="44" y="54" font-family="{FONT}" font-size="14" font-weight="600" fill="{TEXT}">Languages</text>
+  <text x="636" y="54" text-anchor="end" font-family="{FONT}" font-size="11" fill="{MUTED}">by repositories using each, out of {data["repo_total"]}</text>
+  {"".join(segments)}
+  {"".join(legend)}
 </svg>
 """
 

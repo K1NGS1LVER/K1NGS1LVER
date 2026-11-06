@@ -21,7 +21,7 @@ TEXT = "#ecebe7"
 MUTED = "#8a8a91"
 LINE = "#232327"
 TRACK = "#1d1d21"
-ACCENT = "#ff5c35"
+ACCENT = "#9d7bff"
 
 
 def request(url, data=None):
@@ -68,7 +68,6 @@ def collect():
     )["user"]["contributionsCollection"]
 
     return {
-        "followers": user["followers"],
         "repos": len(repos),
         "stars": sum(r["stargazers_count"] for r in repos),
         "commits": gql["totalCommitContributions"],
@@ -88,12 +87,11 @@ def stats_svg(data):
     cols = [
         ("contributions, 12 mo", fmt(data["commits"]), True),
         ("stars earned", fmt(data["stars"]), False),
-        ("followers", fmt(data["followers"]), False),
         ("public repos", fmt(data["repos"]), False),
     ]
     parts = [rule(32)]
     for i, (label, value, primary) in enumerate(cols):
-        x = 44 + i * 148
+        x = 44 + i * 196
         if i:
             parts.append(
                 f'<line x1="{x - 14}" y1="52" x2="{x - 14}" y2="118" stroke="{LINE}" stroke-width="1"/>'
@@ -114,7 +112,7 @@ def stats_svg(data):
 
 
 def heatmap_svg(data):
-    levels = ["#17171a", "#45231a", "#7a2f1c", "#b8431f", ACCENT]
+    levels = ["#17171a", "#2c2145", "#48306e", "#6d47a8", ACCENT]
 
     def color(n):
         if n == 0:

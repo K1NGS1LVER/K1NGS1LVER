@@ -1,4 +1,4 @@
-<a href="https://github.com/K1NGS1LVER"><img src="assets/hero.svg?v=4" width="100%" alt="Daniel Paul, full-stack and AI/ML engineer based in Bengaluru." /></a>
+<a href="https://github.com/K1NGS1LVER"><img src="assets/hero.svg?v=5" width="100%" alt="Daniel Paul, full-stack and AI/ML engineer based in Bengaluru." /></a>
 
 <p align="center">
   <a href="https://daniel-paul-portfolio.onrender.com">Portfolio</a>
@@ -12,11 +12,11 @@
   <a href="mailto:danielpaul150604@gmail.com">Email</a>
 </p>
 
-<img src="assets/stats.svg?v=4" width="100%" alt="GitHub stats: contributions in the last 12 months, stars and public repositories" />
+<img src="assets/stats.svg?v=5" width="100%" alt="GitHub stats: contributions in the last 12 months, stars and public repositories" />
 
-<img src="assets/heatmap.svg?v=4" width="100%" alt="Contribution activity over the last 12 months" />
+<img src="assets/heatmap.svg?v=5" width="100%" alt="Contribution activity over the last 12 months" />
 
-<img src="assets/languages.svg?v=4" width="100%" alt="Language distribution across my public repositories" />
+<img src="assets/languages.svg?v=5" width="100%" alt="Language distribution across my public repositories" />
 
 ## About
 

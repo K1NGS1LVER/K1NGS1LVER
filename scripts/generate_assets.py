@@ -22,6 +22,7 @@ MUTED = "#8a8a91"
 LINE = "#232327"
 TRACK = "#1d1d21"
 SKIP_LANGS = {"HTML", "CSS", "SCSS"}
+RAMP = ["#d3c4ff", "#b9a1ff", "#9d7bff", "#7d58e8", "#5f3bbb", "#42288a"]
 ACCENT = "#9d7bff"
 
 
@@ -73,13 +74,9 @@ def collect():
     )["user"]
     contrib = gql["contributionsCollection"]
 
-    languages, colors = Counter(), {}
+    languages = Counter()
     for repo in gql["repositories"]["nodes"]:
-        names = set()
-        for edge in repo["languages"]["edges"]:
-            name = edge["node"]["name"]
-            colors.setdefault(name, edge["node"]["color"] or MUTED)
-            names.add(name)
+        names = {edge["node"]["name"] for edge in repo["languages"]["edges"]}
         for name in names - SKIP_LANGS:
             languages[name] += 1
 
@@ -93,7 +90,6 @@ def collect():
             for w in contrib["contributionCalendar"]["weeks"]
         ],
         "languages": languages,
-        "colors": colors,
     }
 
 def rule(y, x1=44, x2=636):
@@ -173,11 +169,10 @@ def languages_svg(data):
     total = sum(count for _, count in rows) or 1
     bar_w, x = 592, 44
     segments = []
-    for name, count in rows:
+    for i, (name, count) in enumerate(rows):
         width = count / total * bar_w
         segments.append(
-            f'<rect x="{x:.1f}" y="70" width="{max(width - 1.5, 1):.1f}" height="10" '
-            f'fill="{data["colors"].get(name, MUTED)}"/>'
+            f'<rect x="{x:.1f}" y="70" width="{max(width - 3, 1):.1f}" height="10" fill="{RAMP[i]}"/>'
         )
         x += width
 
@@ -186,7 +181,7 @@ def languages_svg(data):
     for i, (name, count) in enumerate(rows):
         lx, ly = 44 + (i % 3) * col, 112 + (i // 3) * 30
         legend.append(
-            f'<circle cx="{lx + 4}" cy="{ly - 4.5}" r="4" fill="{data["colors"].get(name, MUTED)}"/>'
+            f'<circle cx="{lx + 4}" cy="{ly - 4.5}" r="4" fill="{RAMP[i]}"/>'
             f'<text x="{lx + 16}" y="{ly}" font-family="{FONT}" font-size="13" fill="{TEXT}">{esc(name)}</text>'
             f'<text x="{lx + col - 24:.1f}" y="{ly}" text-anchor="end" font-family="{MONO}" font-size="10.5" fill="{MUTED}">{count} repos</text>'
         )

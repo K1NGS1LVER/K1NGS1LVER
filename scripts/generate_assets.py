@@ -13,16 +13,15 @@ LOGIN = os.environ.get("GH_LOGIN", "K1NGS1LVER")
 TOKEN = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-FONT = "system-ui,-apple-system,Segoe UI,Roboto,sans-serif"
-MONO = "ui-monospace,SFMono-Regular,Menlo,monospace"
+FONT = "ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif"
+MONO = "ui-monospace,SFMono-Regular,Menlo,Consolas,monospace"
 
-PALETTE = {
-    "python": "#3572A5", "javascript": "#f1e05a", "typescript": "#3178c6",
-    "jupyter notebook": "#DA5B0B", "c": "#555555", "css": "#563d7c",
-    "html": "#e34c26", "kotlin": "#A97BFF", "c++": "#f34b7d",
-    "dart": "#00B4AB", "go": "#00ADD8", "java": "#b07219",
-    "rust": "#dea584", "shell": "#89e051", "ruby": "#701516",
-}
+BG = "#0b0b0c"
+TEXT = "#ecebe7"
+MUTED = "#8a8a91"
+LINE = "#232327"
+TRACK = "#1d1d21"
+ACCENT = "#ff5c35"
 
 
 def request(url, data=None):
@@ -81,49 +80,41 @@ def collect():
     }
 
 
-def stat_card(x, label, value):
-    return (
-        f'<g transform="translate({x},0)">'
-        f'<rect width="140" height="60" rx="10" fill="#0b1020" stroke="#1e2a4a" stroke-width="1"/>'
-        f'<text x="14" y="24" font-family="{MONO}" font-size="10" fill="#64748b">{label}</text>'
-        f'<text x="14" y="46" font-family="{MONO}" font-size="22" font-weight="700" fill="url(#bar)">{value}</text>'
-        f"</g>"
-    )
+def rule(y, x1=44, x2=636):
+    return f'<line x1="{x1}" y1="{y}" x2="{x2}" y2="{y}" stroke="{LINE}" stroke-width="1"/>'
 
 
 def stats_svg(data):
-    cards = [
-        ("COMMITS 12MO", fmt(data["commits"])),
-        ("STARS EARNED", fmt(data["stars"])),
-        ("FOLLOWERS", fmt(data["followers"])),
-        ("PUBLIC REPOS", fmt(data["repos"])),
+    cols = [
+        ("contributions, 12 mo", fmt(data["commits"]), True),
+        ("stars earned", fmt(data["stars"]), False),
+        ("followers", fmt(data["followers"]), False),
+        ("public repos", fmt(data["repos"]), False),
     ]
-    cards = "".join(stat_card(i * 156, label, value) for i, (label, value) in enumerate(cards))
-    return f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 180" width="100%" height="auto">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0b1020"/><stop offset="100%" stop-color="#0f1a33"/>
-    </linearGradient>
-    <linearGradient id="bar" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#38bdf8"/><stop offset="50%" stop-color="#818cf8"/><stop offset="100%" stop-color="#c084fc"/>
-    </linearGradient>
-    <linearGradient id="glow" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.3"/><stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
-    </linearGradient>
-  </defs>
-  <rect width="680" height="180" rx="20" fill="url(#bg)"/>
-  <rect x="24" y="24" width="632" height="132" rx="14" fill="none" stroke="#1e2a4a" stroke-width="1.5"/>
-  <rect x="24" y="24" width="632" height="132" rx="14" fill="url(#glow)"/>
-  <text x="44" y="56" font-family="{FONT}" font-size="18" font-weight="700" fill="#f1f5f9">GitHub Stats</text>
-  <text x="44" y="74" font-family="{FONT}" font-size="11.5" fill="#64748b">live from the GitHub API</text>
-  <g transform="translate(44,90)">{cards}</g>
-  <text x="44" y="168" font-family="{MONO}" font-size="10" fill="#334155">github.com/{LOGIN}</text>
-</svg>
-"""
+    parts = [rule(32)]
+    for i, (label, value, primary) in enumerate(cols):
+        x = 44 + i * 148
+        if i:
+            parts.append(
+                f'<line x1="{x - 14}" y1="52" x2="{x - 14}" y2="118" stroke="{LINE}" stroke-width="1"/>'
+            )
+        parts.append(
+            f'<text x="{x}" y="92" font-family="{MONO}" font-size="32" font-weight="600" '
+            f'fill="{ACCENT if primary else TEXT}">{value}</text>'
+        )
+        parts.append(
+            f'<text x="{x}" y="114" font-family="{FONT}" font-size="11.5" fill="{MUTED}">{label}</text>'
+        )
+    return (
+        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 134" width="100%" height="auto">'
+        f'<rect width="680" height="134" fill="{BG}"/>'
+        f'{"".join(parts)}'
+        f"</svg>\n"
+    )
 
 
 def heatmap_svg(data):
-    levels = ["#161b22", "#0e4429", "#006d32", "#26a641", "#39d353"]
+    levels = ["#17171a", "#45231a", "#7a2f1c", "#b8431f", ACCENT]
 
     def color(n):
         if n == 0:
@@ -140,35 +131,23 @@ def heatmap_svg(data):
     for w, week in enumerate(data["weeks"]):
         for d, count in enumerate(week):
             cells.append(
-                f'<rect x="{w * 11}" y="{d * 11}" width="9" height="9" rx="2" fill="{color(count)}">'
+                f'<rect x="{w * 11}" y="{d * 11}" width="9" height="9" fill="{color(count)}">'
                 f"<title>{count} contributions</title></rect>"
             )
-    return f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 200" width="100%" height="auto">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0b1020"/><stop offset="100%" stop-color="#0f1a33"/>
-    </linearGradient>
-    <linearGradient id="glow" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.3"/><stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
-    </linearGradient>
-  </defs>
-  <rect width="680" height="200" rx="20" fill="url(#bg)"/>
-  <rect x="24" y="24" width="632" height="152" rx="14" fill="none" stroke="#1e2a4a" stroke-width="1.5"/>
-  <rect x="24" y="24" width="632" height="152" rx="14" fill="url(#glow)"/>
-  <text x="44" y="56" font-family="{FONT}" font-size="18" font-weight="700" fill="#f1f5f9">Contribution Activity</text>
-  <text x="44" y="74" font-family="{FONT}" font-size="11.5" fill="#64748b">commits per day over the last 12 months</text>
-  <g transform="translate(44,90)">
-    <rect width="600" height="84" rx="8" fill="#0b1020" stroke="#1e2a4a" stroke-width="1"/>
-    <g transform="translate(8,8)">{"".join(cells)}</g>
-  </g>
-  <g transform="translate(44,182)" font-family="{MONO}" font-size="9" fill="#64748b">
-    <text x="0" y="9">Less</text>
-    <rect x="32" y="0" width="10" height="10" rx="2" fill="#161b22"/>
-    <rect x="46" y="0" width="10" height="10" rx="2" fill="#0e4429"/>
-    <rect x="60" y="0" width="10" height="10" rx="2" fill="#006d32"/>
-    <rect x="74" y="0" width="10" height="10" rx="2" fill="#26a641"/>
-    <rect x="88" y="0" width="10" height="10" rx="2" fill="#39d353"/>
-    <text x="104" y="9">More</text>
+
+    legend = "".join(
+        f'<rect x="{32 + i * 14}" y="0" width="10" height="10" fill="{c}"/>'
+        for i, c in enumerate(levels)
+    )
+    return f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 196" width="100%" height="auto">
+  <rect width="680" height="196" fill="{BG}"/>
+  {rule(28)}
+  <text x="44" y="54" font-family="{FONT}" font-size="14" font-weight="600" fill="{TEXT}">Contributions, last 12 months</text>
+  <g transform="translate(44,70)">{"".join(cells)}</g>
+  <g transform="translate(44,174)" font-family="{FONT}" font-size="10" fill="{MUTED}">
+    <text x="0" y="9">less</text>
+    {legend}
+    <text x="108" y="9">more</text>
   </g>
 </svg>
 """
@@ -179,30 +158,20 @@ def languages_svg(data):
     peak = max((count for _, count in top), default=1)
     rows = []
     for i, (lang, count) in enumerate(top):
-        y = 64 + i * 22
+        y = 76 + i * 26
         width = round(300 * count / peak)
-        color = PALETTE.get(lang.lower(), "#818cf8")
+        fill = ACCENT if i == 0 else "#6b6b74"
         rows.append(
-            f'<text x="44" y="{y + 10}" font-family="{FONT}" font-size="12" fill="#cbd5e1">{esc(lang)}</text>'
-            f'<rect x="180" y="{y}" width="300" height="11" rx="5.5" fill="#0b1020" stroke="#1e2a4a" stroke-width="1"/>'
-            f'<rect x="180" y="{y}" width="{width}" height="11" rx="5.5" fill="{color}"/>'
-            f'<text x="490" y="{y + 10}" font-family="{MONO}" font-size="10" fill="#64748b">{count} repos</text>'
+            f'<text x="44" y="{y + 8}" font-family="{FONT}" font-size="13" fill="{TEXT}">{esc(lang)}</text>'
+            f'<rect x="196" y="{y}" width="300" height="6" fill="{TRACK}"/>'
+            f'<rect x="196" y="{y}" width="{width}" height="6" fill="{fill}"/>'
+            f'<text x="636" y="{y + 7}" text-anchor="end" font-family="{MONO}" font-size="10.5" fill="{MUTED}">{count} repos</text>'
         )
-    height = 88 + len(top) * 22
+    height = 76 + (len(top) - 1) * 26 + 22
     return f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 {height}" width="100%" height="auto">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0b1020"/><stop offset="100%" stop-color="#0f1a33"/>
-    </linearGradient>
-    <linearGradient id="glow" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.3"/><stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
-    </linearGradient>
-  </defs>
-  <rect width="680" height="{height}" rx="20" fill="url(#bg)"/>
-  <rect x="24" y="24" width="632" height="{height - 48}" rx="14" fill="none" stroke="#1e2a4a" stroke-width="1.5"/>
-  <rect x="24" y="24" width="632" height="{height - 48}" rx="14" fill="url(#glow)"/>
-  <text x="44" y="56" font-family="{FONT}" font-size="18" font-weight="700" fill="#f1f5f9">Languages</text>
-  <text x="44" y="76" font-family="{FONT}" font-size="11.5" fill="#64748b">by how many of my repositories use each</text>
+  <rect width="680" height="{height}" fill="{BG}"/>
+  {rule(28)}
+  <text x="44" y="54" font-family="{FONT}" font-size="14" font-weight="600" fill="{TEXT}">Languages, by repository count</text>
   {"".join(rows)}
 </svg>
 """

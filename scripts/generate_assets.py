@@ -116,7 +116,7 @@ def stats_svg(data):
   <rect x="24" y="24" width="632" height="132" rx="14" fill="url(#glow)"/>
   <text x="44" y="56" font-family="{FONT}" font-size="18" font-weight="700" fill="#f1f5f9">GitHub Stats</text>
   <text x="44" y="74" font-family="{FONT}" font-size="11.5" fill="#64748b">live from the GitHub API</text>
-  <g transform="translate(44,92)">{cards}</g>
+  <g transform="translate(44,90)">{cards}</g>
   <text x="44" y="168" font-family="{MONO}" font-size="10" fill="#334155">github.com/{LOGIN}</text>
 </svg>
 """
@@ -157,7 +157,7 @@ def heatmap_svg(data):
   <rect x="24" y="24" width="632" height="152" rx="14" fill="url(#glow)"/>
   <text x="44" y="56" font-family="{FONT}" font-size="18" font-weight="700" fill="#f1f5f9">Contribution Activity</text>
   <text x="44" y="74" font-family="{FONT}" font-size="11.5" fill="#64748b">commits per day over the last 12 months</text>
-  <g transform="translate(44,92)">
+  <g transform="translate(44,90)">
     <rect width="600" height="84" rx="8" fill="#0b1020" stroke="#1e2a4a" stroke-width="1"/>
     <g transform="translate(8,8)">{"".join(cells)}</g>
   </g>

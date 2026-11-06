@@ -1,4 +1,4 @@
-<a href="https://daniel-paul-portfolio.onrender.com"><img src="assets/hero.svg" width="100%" alt="Daniel Paul, full-stack and AI/ML engineer based in Bengaluru." /></a>
+<a href="https://daniel-paul-portfolio.onrender.com"><img src="assets/hero.svg?v=2" width="100%" alt="Daniel Paul, full-stack and AI/ML engineer based in Bengaluru." /></a>
 
 <p align="center">
   <a href="https://daniel-paul-portfolio.onrender.com"><img src="https://img.shields.io/badge/Website-daniel--paul--portfolio-ff5c35?style=flat-square&labelColor=0b0b0c" alt="Website" /></a>
@@ -7,11 +7,11 @@
   <a href="mailto:danielpaul150604@gmail.com"><img src="https://img.shields.io/badge/Email-danielpaul150604@gmail.com-3a3a40?style=flat-square&labelColor=0b0b0c" alt="Email" /></a>
 </p>
 
-<img src="assets/stats.svg" width="100%" alt="GitHub stats: contributions in the last 12 months, stars, followers and public repositories" />
+<img src="assets/stats.svg?v=2" width="100%" alt="GitHub stats: contributions in the last 12 months, stars, followers and public repositories" />
 
-<img src="assets/heatmap.svg" width="100%" alt="Contribution activity over the last 12 months" />
+<img src="assets/heatmap.svg?v=2" width="100%" alt="Contribution activity over the last 12 months" />
 
-<img src="assets/languages.svg" width="100%" alt="Languages by how many of my repositories use each" />
+<img src="assets/languages.svg?v=2" width="100%" alt="Languages by how many of my repositories use each" />
 
 ## About
 

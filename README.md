@@ -1,15 +1,11 @@
 <a href="https://github.com/K1NGS1LVER"><img src="assets/hero.svg?v=6" width="100%" alt="Daniel Paul, full-stack and AI/ML engineer based in Bengaluru." /></a>
 
 <p align="center">
-  <a href="https://daniel-paul-portfolio.onrender.com">Portfolio</a>
-  &nbsp;·&nbsp;
-  <a href="https://github.com/K1NGS1LVER">GitHub</a>
-  &nbsp;·&nbsp;
-  <a href="https://www.linkedin.com/in/daniel-paul-dev/">LinkedIn</a>
-  &nbsp;·&nbsp;
-  <a href="https://www.npmjs.com/package/teacher-sab">npm</a>
-  &nbsp;·&nbsp;
-  <a href="mailto:danielpaul150604@gmail.com">Email</a>
+  <a href="https://daniel-paul-portfolio.onrender.com"><img src="https://img.shields.io/badge/Portfolio-daniel--paul--portfolio.onrender.com-6d47a8?style=for-the-badge&labelColor=0b0b0c&logo=render&logoColor=white" alt="Portfolio" /></a>
+  <a href="https://github.com/K1NGS1LVER"><img src="https://img.shields.io/badge/GitHub-K1NGS1LVER-6d47a8?style=for-the-badge&labelColor=0b0b0c&logo=github&logoColor=white" alt="GitHub" /></a>
+  <a href="https://www.linkedin.com/in/daniel-paul-dev/"><img src="https://img.shields.io/badge/LinkedIn-Daniel_Paul-6d47a8?style=for-the-badge&labelColor=0b0b0c&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
+  <a href="https://www.npmjs.com/package/teacher-sab"><img src="https://img.shields.io/badge/npm-teacher--sab-6d47a8?style=for-the-badge&labelColor=0b0b0c&logo=npm&logoColor=white" alt="npm" /></a>
+  <a href="mailto:danielpaul150604@gmail.com"><img src="https://img.shields.io/badge/Email-danielpaul150604@gmail.com-6d47a8?style=for-the-badge&labelColor=0b0b0c&logo=gmail&logoColor=white" alt="Email" /></a>
 </p>
 
 <img src="assets/stats.svg?v=6" width="100%" alt="GitHub stats: contributions in the last 12 months, stars and public repositories" />

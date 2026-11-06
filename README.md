@@ -1,13 +1,18 @@
-<a href="https://daniel-paul-portfolio.onrender.com"><img src="assets/hero.svg?v=3" width="100%" alt="Daniel Paul, full-stack and AI/ML engineer based in Bengaluru." /></a>
+<a href="https://github.com/K1NGS1LVER"><img src="assets/hero.svg?v=3" width="100%" alt="Daniel Paul, full-stack and AI/ML engineer based in Bengaluru." /></a>
 
 <p align="center">
-  <a href="https://daniel-paul-portfolio.onrender.com"><img src="https://img.shields.io/badge/Website-daniel--paul--portfolio-ff5c35?style=flat-square&labelColor=0b0b0c" alt="Website" /></a>
-  <a href="https://www.linkedin.com/in/daniel-paul-dev/"><img src="https://img.shields.io/badge/LinkedIn-Daniel_Paul-3a3a40?style=flat-square&labelColor=0b0b0c" alt="LinkedIn" /></a>
-  <a href="https://www.npmjs.com/package/teacher-sab"><img src="https://img.shields.io/badge/npm-teacher--sab-3a3a40?style=flat-square&labelColor=0b0b0c" alt="npm" /></a>
-  <a href="mailto:danielpaul150604@gmail.com"><img src="https://img.shields.io/badge/Email-danielpaul150604@gmail.com-3a3a40?style=flat-square&labelColor=0b0b0c" alt="Email" /></a>
+  <a href="https://daniel-paul-portfolio.onrender.com">Portfolio</a>
+  &nbsp;·&nbsp;
+  <a href="https://github.com/K1NGS1LVER">GitHub</a>
+  &nbsp;·&nbsp;
+  <a href="https://www.linkedin.com/in/daniel-paul-dev/">LinkedIn</a>
+  &nbsp;·&nbsp;
+  <a href="https://www.npmjs.com/package/teacher-sab">npm</a>
+  &nbsp;·&nbsp;
+  <a href="mailto:danielpaul150604@gmail.com">Email</a>
 </p>
 
-<img src="assets/stats.svg?v=3" width="100%" alt="GitHub stats: contributions in the last 12 months, stars, followers and public repositories" />
+<img src="assets/stats.svg?v=3" width="100%" alt="GitHub stats: contributions in the last 12 months, stars and public repositories" />
 
 <img src="assets/heatmap.svg?v=3" width="100%" alt="Contribution activity over the last 12 months" />
 
@@ -21,6 +26,7 @@ Currently finishing my Master of Computer Applications (MCA) at Christ Universit
 
 | | |
 |---|---|
+| Portfolio | [daniel-paul-portfolio.onrender.com](https://daniel-paul-portfolio.onrender.com) |
 | Location | Bengaluru, India |
 | Focus | Agentic workflows, local-first RAG, high-throughput backends |
 | Currently | Shipping FinPath at Adobe ACS, maintaining `teacher-sab` on npm |

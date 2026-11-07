@@ -63,9 +63,6 @@ def collect():
             }
             contributionsCollection {
               totalCommitContributions
-              contributionCalendar {
-                weeks { contributionDays { date contributionCount } }
-              }
             }
           }
         }
@@ -85,10 +82,6 @@ def collect():
         "repo_total": gql["repositories"]["totalCount"],
         "stars": sum(r["stargazers_count"] for r in repos),
         "commits": contrib["totalCommitContributions"],
-        "weeks": [
-            [d["contributionCount"] for d in w["contributionDays"]]
-            for w in contrib["contributionCalendar"]["weeks"]
-        ],
         "languages": languages,
     }
 
@@ -123,46 +116,6 @@ def stats_svg(data):
         f'{"".join(parts)}'
         f"</svg>\n"
     )
-
-
-def heatmap_svg(data):
-    levels = ["#17171a", "#2c2145", "#48306e", "#6d47a8", ACCENT]
-
-    def color(n):
-        if n == 0:
-            return levels[0]
-        if n <= 2:
-            return levels[1]
-        if n <= 5:
-            return levels[2]
-        if n <= 9:
-            return levels[3]
-        return levels[4]
-
-    cells = []
-    for w, week in enumerate(data["weeks"]):
-        for d, count in enumerate(week):
-            cells.append(
-                f'<rect x="{w * 11}" y="{d * 11}" width="9" height="9" fill="{color(count)}">'
-                f"<title>{count} contributions</title></rect>"
-            )
-
-    legend = "".join(
-        f'<rect x="{32 + i * 14}" y="0" width="10" height="10" fill="{c}"/>'
-        for i, c in enumerate(levels)
-    )
-    return f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 196" width="100%" height="auto">
-  <rect width="680" height="196" fill="{BG}"/>
-  {rule(28)}
-  <text x="44" y="54" font-family="{FONT}" font-size="14" font-weight="600" fill="{TEXT}">Contributions, last 12 months</text>
-  <g transform="translate(44,70)">{"".join(cells)}</g>
-  <g transform="translate(44,174)" font-family="{FONT}" font-size="10" fill="{MUTED}">
-    <text x="0" y="9">less</text>
-    {legend}
-    <text x="108" y="9">more</text>
-  </g>
-</svg>
-"""
 
 
 def languages_svg(data):
@@ -204,7 +157,6 @@ def main():
     os.makedirs(out, exist_ok=True)
     for name, svg in (
         ("stats.svg", stats_svg(data)),
-        ("heatmap.svg", heatmap_svg(data)),
         ("languages.svg", languages_svg(data)),
     ):
         with open(os.path.join(out, name), "w", encoding="utf-8") as f:

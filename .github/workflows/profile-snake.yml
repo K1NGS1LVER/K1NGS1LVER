@@ -1,0 +1,28 @@
+name: Update contribution snake
+
+on:
+  schedule:
+    - cron: "0 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  snake:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: Platane/snk/svg-only@v3
+        with:
+          github_user_name: K1NGS1LVER
+          outputs: |
+            assets/heatmap-light.svg?color_snake=#9d7bff&color_dots=#17171a,#2c2145,#48306e,#6d47a8,#9d7bff
+            assets/heatmap-dark.svg?palette=github-dark&color_snake=#9d7bff
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/heatmap-light.svg assets/heatmap-dark.svg
+          git diff --cached --quiet || git commit -m "chore: refresh contribution snake"
+          git push

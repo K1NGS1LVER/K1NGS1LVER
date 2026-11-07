@@ -10,7 +10,11 @@
 
 <img src="assets/stats.svg?v=6" width="100%" alt="GitHub stats: contributions in the last 12 months, stars and public repositories" />
 
-<img src="assets/heatmap.svg?v=6" width="100%" alt="Contribution activity over the last 12 months" />
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/heatmap-dark.svg?v=7">
+  <source media="(prefers-color-scheme: light)" srcset="assets/heatmap-light.svg?v=7">
+  <img src="assets/heatmap-light.svg?v=7" width="100%" alt="Contribution activity over the last 12 months" />
+</picture>
 
 <img src="assets/languages.svg?v=6" width="100%" alt="Language distribution across my public repositories" />
 
